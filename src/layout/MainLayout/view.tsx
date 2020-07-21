@@ -1,11 +1,15 @@
 import React from 'react';
 
-const View = () => {
+interface IProps {
+    children: any
+}
+
+const MainLayout = ({children}: IProps) => {
     return (
-        <div>
-            
+        <div className={"layout"}>
+            {children}
         </div>
     );
 };
 
-export default View;
+export default MainLayout;

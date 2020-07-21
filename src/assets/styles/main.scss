@@ -1,0 +1,123 @@
+p {
+  margin: 0;
+}
+
+.header {
+  color: $lightblue;
+}
+
+.headerTop {
+  @extend .a-center;
+  height: 36px;
+  background: #062b47;
+  font-size: 14px;
+}
+
+.headerBottom {
+  background: #0A385B;
+  box-shadow: 0 2px 4px rgba(15, 65, 104, 0.06);
+  height: 87px;
+  display: flex;
+  align-items: center;
+
+  > .container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.location {
+  @extend .a-center;
+}
+
+.icon {
+  margin-left: 15px;
+  margin-right: 3px;
+}
+
+.headerTopLeft {
+  display: flex;
+  margin-left: auto;
+}
+
+.leftItem {
+  @extend .a-center;
+  margin-left: 30px;
+
+  svg {
+    margin-right: 5px;
+  }
+}
+
+.filter {
+  @extend .a-center;
+
+  p {
+    font-weight: bold;
+    padding: 0 20px;
+    opacity: .6;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
+.button {
+  @extend .a-center;
+  height: 50px;
+  background-color: $lightblue;
+  color: $blue;
+  padding: 0 23px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.mobileApp {
+  display: flex;
+}
+
+.circles {
+  position: absolute;
+  right: 100px;
+  z-index: -1;
+}
+
+.mobileAppLeft {
+  position: relative;
+  width: 60%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.mobileAppRight {
+  width: 40%;
+
+  .mobileAppTitle {
+    font-size: 48px;
+  }
+}
+
+.downloadLinks {
+  display: flex;
+  justify-content: space-between;
+}
+
+.downloadLink {
+  @extend .a-center;
+  padding-left: 20px;
+  width: 43%;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid $blue;
+  border-radius: 2px;
+
+  svg {
+    margin-right: 15px;
+  }
+}
+
+
+
