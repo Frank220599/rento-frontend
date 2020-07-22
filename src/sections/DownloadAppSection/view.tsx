@@ -3,8 +3,12 @@ import MobileApp from "assets/images/MobileApp.png";
 import CirclesIcon from "assets/icons/CirclesIcon";
 import PlayMarketIcon from "assets/icons/PlayMarketIcon";
 import AppStoreIcon from "assets/icons/AppStoreIcon";
+import Logo from "../../assets/images/Logo";
+import FacebookIcon from "../../assets/icons/FacebookIcon";
+import InstagramIcon from "../../assets/icons/IntagramIcon";
+import TelegramIcon from "../../assets/icons/TelegramIcon";
 
-const DownloadApp = () => {
+const DownloadAppSection = () => {
     return (
         <div className={"container"}>
             <div className={"mobileApp"}>
@@ -13,7 +17,7 @@ const DownloadApp = () => {
                     <CirclesIcon className={'circles'}/>
                 </div>
                 <div className={"mobileAppRight"}>
-                    <p className={'mobileAppTitle'}>Download app from</p>
+                    <p className={'mobileAppTitle'}>Download app <br/>from</p>
                     <p>Все бесплатно толька для вас )</p>
                     <div className={'downloadLinks'}>
                         <div className="downloadLink">
@@ -33,9 +37,25 @@ const DownloadApp = () => {
                     </div>
                 </div>
             </div>
-
+            <div className="socials">
+                <Logo/>
+                <div className={"socialLinks"}>
+                    <div className={"socialLink"}>
+                        <FacebookIcon/>
+                        <p>Facebook</p>
+                    </div>
+                    <div className={"socialLink"}>
+                        <InstagramIcon/>
+                        <p>Instagram</p>
+                    </div>
+                    <div className={"socialLink"}>
+                        <TelegramIcon/>
+                        <p>Telegram</p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
 
-export default DownloadApp;
+export default DownloadAppSection;

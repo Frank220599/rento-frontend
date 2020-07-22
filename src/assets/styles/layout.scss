@@ -16,11 +16,17 @@
   .container {
     max-width: 720px
   }
+  .announcementItem {
+    width: calc(100% / 3 - 30px);
+  }
 }
 
 @media (min-width: 992px) {
   .container {
     max-width: 960px
+  }
+  .announcementItem {
+    width: calc(100% / 3 - 30px);
   }
 }
 
