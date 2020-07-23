@@ -1,10 +1,12 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 import Logo from "assets/images/Logo";
 import LocationIcon from "assets/icons/LocationIcon"
-import FavoriteIcon from "../../assets/icons/FavoriteIcon";
-import LanguageIcon from "../../assets/icons/LanguageIcon";
-import UserIcon from "../../assets/icons/UserIcon";
+import FavoriteIcon from "assets/icons/FavoriteIcon";
+import LanguageIcon from "assets/icons/LanguageIcon";
+import UserIcon from "assets/icons/UserIcon";
+import ROUTES from "router/ROUTES";
 
 const Header = () => {
     return (
@@ -29,14 +31,17 @@ const Header = () => {
                         </div>
                         <div className={"leftItem"}>
                             <UserIcon/>
-                            <p>Войти/Регистрация</p>
+                            <Link to={ROUTES.AUTH_SIGN_IN}>Войти</Link>/
+                            <Link to={ROUTES.AUTH_SIGN_UP}>Регистрация</Link>
                         </div>
                     </div>
                 </div>
             </div>
             <div className={"headerBottom"}>
                 <div className={"container"}>
-                    <Logo/>
+                    <Link to={ROUTES.MAIN}>
+                        <Logo/>
+                    </Link>
                     <div className={"filter"}>
                         <p className={"active"}>Аренда</p>
                         <p>С выкупом</p>

@@ -3,10 +3,6 @@ import MobileApp from "assets/images/MobileApp.png";
 import CirclesIcon from "assets/icons/CirclesIcon";
 import PlayMarketIcon from "assets/icons/PlayMarketIcon";
 import AppStoreIcon from "assets/icons/AppStoreIcon";
-import Logo from "../../assets/images/Logo";
-import FacebookIcon from "../../assets/icons/FacebookIcon";
-import InstagramIcon from "../../assets/icons/IntagramIcon";
-import TelegramIcon from "../../assets/icons/TelegramIcon";
 
 const DownloadAppSection = () => {
     return (
@@ -34,23 +30,6 @@ const DownloadAppSection = () => {
                                 <p>App Store</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div className="socials">
-                <Logo/>
-                <div className={"socialLinks"}>
-                    <div className={"socialLink"}>
-                        <FacebookIcon/>
-                        <p>Facebook</p>
-                    </div>
-                    <div className={"socialLink"}>
-                        <InstagramIcon/>
-                        <p>Instagram</p>
-                    </div>
-                    <div className={"socialLink"}>
-                        <TelegramIcon/>
-                        <p>Telegram</p>
                     </div>
                 </div>
             </div>
