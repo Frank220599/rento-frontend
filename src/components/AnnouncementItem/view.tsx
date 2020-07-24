@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
 
 import CalendarIcon from "assets/icons/CalendarIcon";
 
@@ -11,7 +12,7 @@ interface IProps {
 
 const AnnouncementItem = ({image, title, data, price}: IProps) => {
     return (
-        <div className={"announcementItem"}>
+        <NavLink to={'/announcement/noviya-mashina'} className={"announcementItem"}>
             <img src={image} alt=""/>
             <div className={"announcementItemContent"}>
                 <p className={"announcementItemTitle"}>{title}</p>
@@ -24,7 +25,7 @@ const AnnouncementItem = ({image, title, data, price}: IProps) => {
                     <p>{data}</p>
                 </div>
             </div>
-        </div>
+        </NavLink>
     );
 };
 

@@ -24,7 +24,7 @@ const CustomInput = ({name, label, placeholder}: CustomInputProps) => (
             />
         )}
     </Field>
-)
+);
 
 const ProfileSettingFormView = ({}: FormikProps<FormValues>) => {
     return (

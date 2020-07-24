@@ -6,6 +6,8 @@ import SignInPage from "../pages/Authorization/SignInPage";
 import ProfilePage from "../pages/Profile/ProfilePage/view";
 import ProfilePaymentPage from "../pages/Profile/ProfilePaymentPage";
 import ProfileSettingsPage from "../pages/Profile/ProfileSettingsPage/view";
+import ChatPage from "../pages/Profile/ChatPage";
+import AnnouncementInfoPage from "../pages/Announcement/AnnouncementInfoPage";
 
 const MainRotes: IRoute[] = [
     {
@@ -39,6 +41,21 @@ const MainRotes: IRoute[] = [
         path: ROUTES.PROFILE_SETTINGS,
         exact: true,
         component: ProfileSettingsPage,
+    },
+    {
+        path: ROUTES.PROFILE_SETTINGS,
+        exact: true,
+        component: ProfileSettingsPage,
+    },
+    {
+        path: ROUTES.CHAT,
+        exact: true,
+        component: ChatPage,
+    },
+    {
+        path: ROUTES.ANNOUNCEMENT_SINGLE,
+        exact: true,
+        component: AnnouncementInfoPage,
     },
 ];
 
