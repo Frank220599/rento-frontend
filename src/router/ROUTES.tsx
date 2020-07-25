@@ -7,6 +7,7 @@ enum ROUTES {
     PROFILE_SETTINGS = '/user/profile/settings',
     CHAT = '/user/chat',
     ANNOUNCEMENT_SINGLE = '/announcement/:slug',
+    ANNOUNCEMENT_ADD = '/announcement/add',
 };
 
 export default ROUTES;

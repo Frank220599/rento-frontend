@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 import Logo from "assets/images/Logo";
 import LocationIcon from "assets/icons/LocationIcon"
@@ -48,9 +48,9 @@ const Header = () => {
                         <p>Продаётся</p>
                         <p>Отдам даром</p>
                     </div>
-                    <div className={"button"}>
+                    <NavLink to={ROUTES.ANNOUNCEMENT_ADD} className={"button"}>
                         <p>+ Подать объявления</p>
-                    </div>
+                    </NavLink>
                 </div>
             </div>
         </div>

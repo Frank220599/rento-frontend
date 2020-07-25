@@ -7,9 +7,17 @@ import Favorite2Icon from "assets/icons/Favorite2Icon";
 import ROUTES from "router/ROUTES";
 import AnnouncementItem from "components/AnnouncementItem";
 import SendMessage from "components/SendMessage";
+import ParameterItem from "components/ParameterItem";
+import CommentItem from "components/CommentItem";
+import DocumentItem from "components/DocumentItem";
+import "react-responsive-carousel/lib/styles/carousel.min.css"
+
+const Carousel = require('react-responsive-carousel').Carousel;
+
 
 const AnnouncementInfoPage = () => {
     const history = useHistory();
+
     return (
         <div className={"container"}>
             <div className={"breadcrumb"}>
@@ -19,7 +27,52 @@ const AnnouncementInfoPage = () => {
             <div className="announcementInfo">
                 <div className="announcementInfoTop">
                     <div className="announcementGallery">
-                        ads
+                        <Carousel
+                            showStatus={false}
+                            showArrows={false}
+                            showThumbs={true}
+                            swipeable={true}
+                        >
+                            <div className={"slide"}>
+                                <img src={require('assets/images/img.png')} alt=""/>
+                            </div>
+                            <div className={"slide"}>
+                                <img src={require('assets/images/img.png')} alt=""/>
+                            </div>
+                            <div className={"slide"}>
+                                <img src={require('assets/images/img.png')} alt=""/>
+                            </div>
+                            <div className={"slide"}>
+                                <img src={require('assets/images/img.png')} alt=""/>
+                            </div>
+                            <div className={"slide"}>
+                                <img src={require('assets/images/img.png')} alt=""/>
+                            </div>
+                            <div className={"slide"}>
+                                <img src={require('assets/images/img.png')} alt=""/>
+                            </div>
+                            <div className={"slide"}>
+                                <img src={require('assets/images/img.png')} alt=""/>
+                            </div>
+                            <div className={"slide"}>
+                                <img src={require('assets/images/img.png')} alt=""/>
+                            </div>
+                            <div className={"slide"}>
+                                <img src={require('assets/images/img.png')} alt=""/>
+                            </div>
+
+
+                        </Carousel>
+                        <div className={"viewInfo"}>
+                            <div>
+                                <span>Опубликована</span>
+                                <p>10 июня, 23:56</p>
+                            </div>
+                            <div>
+                                <span>Просмотры:</span>
+                                <p>880 пользователь</p>
+                            </div>
+                        </div>
                     </div>
                     <div className="announcementInfoBlock">
                         <div className="announcementTitle">
@@ -51,7 +104,7 @@ const AnnouncementInfoPage = () => {
                         <div className="author">
                             <p className={"borderLabel"}>Автор</p>
                             <div className={"profileHeaderLeft"}>
-                                <img src="" alt=""/>
+                                <img src={require('assets/images/placeholderUser.png')} alt=""/>
                                 <div className={"profileInfo"}>
                                     <p>Анастасия Цой</p>
                                     <Link to={ROUTES.PROFILE_PAYMENT}>Все обновлении автора</Link>
@@ -64,10 +117,50 @@ const AnnouncementInfoPage = () => {
                         </div>
                     </div>
                 </div>
+                <div className="announcementMiddle">
+                    <div className="announcementRentTime">
+                        <p className={"middleTitle"}>Дата выдача аренду</p>
+                        <div>
+                            <div>
+                                <span>От</span>
+                                <p>10 июня, 2020</p>
+                            </div>
+                            <div>
+                                <span>До</span>
+                                <p>+ ∞</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="announcementDocuments">
+                        <p className={"middleTitle"}>Документы</p>
+                        <div className="documentsList">
+                            <DocumentItem/>
+                            <DocumentItem/>
+                            <DocumentItem/>
+                        </div>
+                    </div>
+                </div>
+                <div className="parametersWrapper">
+                    <p className={"borderLabel"}>Параметры</p>
+                    <div className="parameters">
+                        {
+                            [...new Array(20)].map(() => (
+                                <ParameterItem/>
+                            ))
+                        }
+                    </div>
+                </div>
                 <div className="announcementInfoBottom">
-                    <div className="announcementReviews">
+                    <div className="announcementComments">
                         <p className={"borderLabel"}>Коментарии</p>
                         <SendMessage/>
+                        <div className="commentsList">
+                            <CommentItem/>
+                            <CommentItem/>
+                            <CommentItem/>
+                            <CommentItem/>
+                            <CommentItem/>
+                        </div>
                     </div>
                     <div className="announcementLocation">
                         <p className={"borderLabel"}>Местонахождение на карте</p>

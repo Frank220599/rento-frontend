@@ -5,6 +5,7 @@ import MainRotes from "./MainRoutes";
 import MainLayout from "layout/MainLayout";
 import ScrollToTopOnMount from "components/ScrollToTopOnMount";
 
+
 const AppRouter = () => (
     <Router>
         <Switch>
