@@ -9,6 +9,7 @@ import ProfileSettingsPage from "../pages/Profile/ProfileSettingsPage/view";
 import ChatPage from "../pages/Profile/ChatPage";
 import AnnouncementInfoPage from "../pages/Announcement/AnnouncementInfoPage";
 import AddAnnouncementPage from "../pages/Announcement/AddAnnouncementPage";
+import CategoryAnnouncementsPage from "../pages/Announcement/CategoryAnnouncementsPage";
 
 const MainRotes: IRoute[] = [
     {
@@ -63,7 +64,11 @@ const MainRotes: IRoute[] = [
         exact: true,
         component: AnnouncementInfoPage,
     },
-
+    {
+        path: ROUTES.CATEGORY_ANNOUNCEMENTS,
+        exact: true,
+        component: CategoryAnnouncementsPage,
+    },
 ];
 
 export default MainRotes;

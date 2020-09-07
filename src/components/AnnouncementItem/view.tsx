@@ -2,17 +2,19 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 
 import CalendarIcon from "assets/icons/CalendarIcon";
+import moment from "moment";
 
 interface IProps {
     image: string;
     title: string;
     price: string;
-    data: string;
+    slug: string;
+    date: string;
 }
 
-const AnnouncementItem = ({image, title, data, price}: IProps) => {
+const AnnouncementItem = ({image, title, date, price, slug}: IProps) => {
     return (
-        <NavLink to={'/announcement/noviya-mashina'} className={"announcementItem"}>
+        <NavLink to={`/announcement/${slug}`} className={"announcementItem"}>
             <img src={image} alt=""/>
             <div className={"announcementItemContent"}>
                 <p className={"announcementItemTitle"}>{title}</p>
@@ -22,7 +24,7 @@ const AnnouncementItem = ({image, title, data, price}: IProps) => {
                         width={10}
                         height={10}
                     />
-                    <p>{data}</p>
+                    <p>{moment(date).locale('ru').format('DD/MM/YYYY')}</p>
                 </div>
             </div>
         </NavLink>

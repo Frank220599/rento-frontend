@@ -15,14 +15,14 @@ const SignInFormView = ({}: FormikProps<FormValues>) => {
             <p>Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum
                 generator.</p>
             <div className={"socialAuth"}>
-                <div>
-                    <GoogleIcon/>
-                    <span>Google</span>
-                </div>
-                <div>
-                    <FacebookOriginalIcon/>
-                    <span>Google</span>
-                </div>
+                {/*<div>*/}
+                {/*    <GoogleIcon/>*/}
+                {/*    <span>Google</span>*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <FacebookOriginalIcon/>*/}
+                {/*    <span>Google</span>*/}
+                {/*</div>*/}
             </div>
             <Form className={"signupForm"}>
                 <Field name={Fields.USERNAME} placeholder={PLACEHOLDERS.USERNAME}/>

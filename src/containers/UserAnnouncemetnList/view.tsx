@@ -36,10 +36,11 @@ const UserAnnouncementList = () => {
                     {
                         [...new Array(19)].map(() => (
                             <AnnouncementItem
+                                slug={''}
                                 image={require('assets/images/img.png')}
                                 title={'53 кв/м оффис сдаётся в аренду в'}
                                 price={'500 у.е/месяц'}
-                                data={'20/12/2020'}
+                                date={'20/12/2020'}
                             />
                         ))
                     }

@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import categories from "data/categories";
 import CategoryItem from "../../components/CategoryItem";
 
-const CategoriesSection = () => {
+const CategoriesSectionView = ({categories}) => {
     const [isVisible, setIsVisible] = useState(true);
 
     const toggle = () => {
@@ -22,11 +21,13 @@ const CategoriesSection = () => {
             </div>
             <div className="mainCategoriesList">
                 {
-                    categories.map(category => (
+                    isVisible && categories.data.map(category => (
                         <CategoryItem
-                            name={category.name}
-                            image={category.image}
-                            backgroundColor={category.backgroundColor}
+                            key={category.id}
+                            id={category.id}
+                            name={category.title}
+                            image={category.image_url}
+                            backgroundColor={category.color}
                         />
                     ))
                 }
@@ -35,4 +36,4 @@ const CategoriesSection = () => {
     );
 };
 
-export default CategoriesSection;
+export default CategoriesSectionView;

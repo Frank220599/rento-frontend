@@ -11,11 +11,12 @@ import ParameterItem from "components/ParameterItem";
 import CommentItem from "components/CommentItem";
 import DocumentItem from "components/DocumentItem";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
+import moment from "moment";
 
 const Carousel = require('react-responsive-carousel').Carousel;
 
 
-const AnnouncementInfoPage = () => {
+const AnnouncementInfoPageView = ({announcement}) => {
     const history = useHistory();
 
     return (
@@ -29,54 +30,31 @@ const AnnouncementInfoPage = () => {
                     <div className="announcementGallery">
                         <Carousel
                             showStatus={false}
-                            showArrows={false}
                             showThumbs={true}
-                            swipeable={true}
                         >
-                            <div className={"slide"}>
-                                <img src={require('assets/images/img.png')} alt=""/>
-                            </div>
-                            <div className={"slide"}>
-                                <img src={require('assets/images/img.png')} alt=""/>
-                            </div>
-                            <div className={"slide"}>
-                                <img src={require('assets/images/img.png')} alt=""/>
-                            </div>
-                            <div className={"slide"}>
-                                <img src={require('assets/images/img.png')} alt=""/>
-                            </div>
-                            <div className={"slide"}>
-                                <img src={require('assets/images/img.png')} alt=""/>
-                            </div>
-                            <div className={"slide"}>
-                                <img src={require('assets/images/img.png')} alt=""/>
-                            </div>
-                            <div className={"slide"}>
-                                <img src={require('assets/images/img.png')} alt=""/>
-                            </div>
-                            <div className={"slide"}>
-                                <img src={require('assets/images/img.png')} alt=""/>
-                            </div>
-                            <div className={"slide"}>
-                                <img src={require('assets/images/img.png')} alt=""/>
-                            </div>
-
+                            {
+                                announcement.images && announcement.images.map((imageUrl, index) => (
+                                    <div className={"slide"} key={index}>
+                                        <img src={imageUrl} alt=""/>
+                                    </div>
+                                ))
+                            }
 
                         </Carousel>
                         <div className={"viewInfo"}>
                             <div>
                                 <span>Опубликована</span>
-                                <p>10 июня, 23:56</p>
+                                <p>{moment(announcement.created_at).locale('ru').format('DD MMMM, HH:MM')}</p>
                             </div>
                             <div>
                                 <span>Просмотры:</span>
-                                <p>880 пользователь</p>
+                                <p>{announcement.views} пользователь</p>
                             </div>
                         </div>
                     </div>
                     <div className="announcementInfoBlock">
                         <div className="announcementTitle">
-                            <p>Сдаётся на аренду Chevrolet Camaro GT36</p>
+                            <p>{announcement.title}</p>
                         </div>
                         <div className={"descWrapper"}>
                             <div className="descTop">
@@ -90,16 +68,12 @@ const AnnouncementInfoPage = () => {
                                 </div>
                             </div>
                             <div className="announcementInfoDesc">
-                                <p>
-                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                                    an unknown printer took a galley of type and scrambled it to make a type specimen
-                                    book.
-                                </p>
+                                <p>{announcement.description}</p>
                             </div>
                         </div>
                         <div className="priceWrapper">
                             <p>Цена</p>
-                            <span>500 y.e/месяц</span>
+                            <span>{announcement.price} y.e/месяц</span>
                         </div>
                         <div className="author">
                             <p className={"borderLabel"}>Автор</p>
@@ -144,8 +118,12 @@ const AnnouncementInfoPage = () => {
                     <p className={"borderLabel"}>Параметры</p>
                     <div className="parameters">
                         {
-                            [...new Array(20)].map(() => (
-                                <ParameterItem/>
+                            announcement.property_values && announcement.property_values.map((property, index) => (
+                                <ParameterItem
+                                    key={property.id}
+                                    name={property.name}
+                                    value={property.value}
+                                />
                             ))
                         }
                     </div>
@@ -174,28 +152,11 @@ const AnnouncementInfoPage = () => {
                 <p className={"borderLabel"}>Вам может понравиться</p>
                 <div className={"a-center"}>
                     <AnnouncementItem
+                        slug={''}
                         image={require('assets/images/img.png')}
                         title={'53 кв/м оффис сдаётся в аренду в'}
                         price={'500 у.е/месяц'}
-                        data={'20/06/2020'}
-                    />
-                    <AnnouncementItem
-                        image={require('assets/images/img.png')}
-                        title={'53 кв/м оффис сдаётся в аренду в'}
-                        price={'500 у.е/месяц'}
-                        data={'20/06/2020'}
-                    />
-                    <AnnouncementItem
-                        image={require('assets/images/img.png')}
-                        title={'53 кв/м оффис сдаётся в аренду в'}
-                        price={'500 у.е/месяц'}
-                        data={'20/06/2020'}
-                    />
-                    <AnnouncementItem
-                        image={require('assets/images/img.png')}
-                        title={'53 кв/м оффис сдаётся в аренду в'}
-                        price={'500 у.е/месяц'}
-                        data={'20/06/2020'}
+                        date={'20/06/2020'}
                     />
                 </div>
             </div>
@@ -203,4 +164,4 @@ const AnnouncementInfoPage = () => {
     );
 };
 
-export default AnnouncementInfoPage;
+export default AnnouncementInfoPageView;

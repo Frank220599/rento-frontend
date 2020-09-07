@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ParameterItem = () => {
+const ParameterItem = ({name, value}) => {
     return (
         <div className={"parameterItem"}>
-            <span>Город:</span>
-            <p>Самарканд</p>
+            <span>{name}:</span>
+            <p>{value}</p>
         </div>
     );
 };

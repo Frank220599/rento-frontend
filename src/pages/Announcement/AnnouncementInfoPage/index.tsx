@@ -1,3 +1,3 @@
-import AnnouncementInfoPage from "./view";
+import AnnouncementInfoPage from "./connect";
 
 export default AnnouncementInfoPage;

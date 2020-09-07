@@ -35,20 +35,20 @@ const Filter = () => {
                     />
                     <ChevronDownIcon/>
                 </div>
-                <div className={"mainFilterField"}>
-                    <CalendarIcon/>
-                    <input
-                        type="text"
-                        placeholder={"20/06/2020"}
-                    />
-                </div>
-                <div className={"mainFilterField"}>
-                    <CalendarIcon/>
-                    <input
-                        type="text"
-                        placeholder={"20/06/2020"}
-                    />
-                </div>
+                {/*<div className={"mainFilterField"}>*/}
+                {/*    <CalendarIcon/>*/}
+                {/*    <input*/}
+                {/*        type="text"*/}
+                {/*        placeholder={"20/06/2020"}*/}
+                {/*    />*/}
+                {/*</div>*/}
+                {/*<div className={"mainFilterField"}>*/}
+                {/*    <CalendarIcon/>*/}
+                {/*    <input*/}
+                {/*        type="text"*/}
+                {/*        placeholder={"20/06/2020"}*/}
+                {/*    />*/}
+                {/*</div>*/}
                 <div className="searchButton">
                     <p>Показать</p>
                 </div>

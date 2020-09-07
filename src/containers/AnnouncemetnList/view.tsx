@@ -1,17 +1,27 @@
 import React from 'react';
-
+import {useHistory} from "react-router-dom";
 import AnnouncementItem from "components/AnnouncementItem";
 import SortIcon from "assets/icons/SortIcon";
 import FilterIcon from "../../assets/icons/FilterIcon";
 import ListViewIcon from "../../assets/icons/ListViewIcon";
 import GridViewIcon from "../../assets/icons/GridViewIcon";
+import BackIcon from "../../assets/icons/BackIcon";
 
-const AnnouncementList = () => {
+const AnnouncementListView = ({announcements, back}) => {
+    const history = useHistory();
     return (
         <div>
             <div className="listHeader">
                 <div className="container">
-                    <p>Последние добавленные + 1053</p>
+                    {
+                        back
+                            ? <div className={"a-center cp"} onClick={() => history.goBack()}>
+                                <BackIcon/>
+                                <p style={{marginLeft: 10}}>Назад</p>
+                            </div>
+                            : <p>Последние добавленные + 1053</p>
+
+                    }
                     <div className="listHeaderFunctions">
                         <div>
                             <SortIcon/>
@@ -31,12 +41,14 @@ const AnnouncementList = () => {
             <div className={"container"}>
                 <div className={"announcementList"}>
                     {
-                        [...new Array(19)].map(() => (
+                        announcements.data.map((announcement) => (
                             <AnnouncementItem
-                                image={require('assets/images/img.png')}
-                                title={'53 кв/м оффис сдаётся в аренду в'}
-                                price={'500 у.е/месяц'}
-                                data={'20/12/2020'}
+                                key={announcement.id}
+                                image={announcement.images[0]}
+                                title={announcement.title}
+                                price={`${announcement.price} у.е/месяц`}
+                                date={announcement.created_at}
+                                slug={announcement.slug}
                             />
                         ))
                     }
@@ -49,4 +61,4 @@ const AnnouncementList = () => {
     );
 };
 
-export default AnnouncementList;
+export default AnnouncementListView;

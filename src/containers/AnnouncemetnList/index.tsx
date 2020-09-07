@@ -1,3 +1,3 @@
-import AnnouncementList from "./view";
+import AnnouncementList from "./connect";
 
 export default AnnouncementList;

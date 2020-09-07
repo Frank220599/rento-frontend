@@ -1,3 +1,3 @@
-import CategoriesSection from "./view";
+import CategoriesSection from "./connect";
 
 export default CategoriesSection;
