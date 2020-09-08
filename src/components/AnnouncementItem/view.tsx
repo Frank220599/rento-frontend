@@ -8,13 +8,13 @@ interface IProps {
     image: string;
     title: string;
     price: string;
-    slug: string;
     date: string;
+    id: number;
 }
 
-const AnnouncementItem = ({image, title, date, price, slug}: IProps) => {
+const AnnouncementItem = ({image, id, title, date, price}: IProps) => {
     return (
-        <NavLink to={`/announcement/${slug}`} className={"announcementItem"}>
+        <NavLink to={`/announcement/${id}`} className={"announcementItem"}>
             <img src={image} alt=""/>
             <div className={"announcementItemContent"}>
                 <p className={"announcementItemTitle"}>{title}</p>

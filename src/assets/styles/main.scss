@@ -276,7 +276,6 @@ a {
     outline: none;
     border: none;
     font-weight: 900;
-    width: 100px;
     display: flex;
 
     &::placeholder {
@@ -289,6 +288,8 @@ a {
   margin-left: auto;
   margin-right: 53px;
   font-weight: 900;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .toggleCategories {
@@ -1658,6 +1659,7 @@ a {
   font-size: 14px;
   margin-top: 20px;
   text-align: center;
+
   p {
     display: inline-block;
     text-align: left;
@@ -1666,6 +1668,7 @@ a {
     background: $lightblue;
     width: 50%;
     position: relative;
+
     &:before {
       position: absolute;
       top: -10px;
@@ -1684,9 +1687,12 @@ a {
 .categoryInfo {
   margin-right: auto;
   margin-left: 82px;
+
   img {
     margin-right: 48px;
+    object-fit: contain;
   }
+
   p {
     font-style: normal;
     font-weight: 900;
@@ -1697,4 +1703,104 @@ a {
 
 .cp {
   cursor: pointer;
+}
+
+.categoryFilter {
+
+}
+
+.headerProfile {
+  display: flex;
+  align-items: center;
+  @extend .cp;
+  img {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #FFFFFF;
+    margin-right: 5px;
+    margin-left: 40px;
+    border-radius: 100%;
+  }
+
+  .dropdownMenu {
+    z-index: 999;
+    position: absolute;
+    top: 46px;
+    right: 80px;
+    width: 236px;
+    height: 277px;
+    background: #ffffff;
+    box-shadow: 0 14px 20px rgba(15, 65, 104, 0.2);
+    border-radius: 4px;
+    .balanceInfo {
+      background: $lightblue;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 13px;
+      div {
+        p {
+          color: #ffffff;
+
+        }
+        &:first-child {
+          p {
+            &:first-child {
+              font-size: 10px;
+            }
+            &:last-child {
+              font-size: 12px;
+            }
+          }
+        }
+        &:last-child {
+          p {
+            font-weight: 900;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    .paymentLink {
+      display: block;
+      width: 210px;
+      height: 50px;
+      background: #FFFFFF;
+      box-shadow: 0 10px 20px rgba(15, 65, 104, 0.2);
+      border-radius: 4px;
+      font-weight: 900;
+      font-size: 16px;
+      color: $blue;
+      text-align: center;
+      line-height: 50px;
+      margin: 0 auto;
+      position: relative;
+      top: -10px;
+    }
+    .dropDownLinks {
+      padding-left: 26px;
+      display: flex;
+      flex-direction: column;
+      font-weight: 900;
+      font-size: 16px;
+      color: $blue;
+      margin-top: 20px;
+      a {
+        padding: 12px 0;
+      }
+    }
+  }
+}
+
+.filterOptions {
+  display: flex;
+  flex-wrap: wrap;
+  p {
+    font-size: 20px;
+    font-weight: 900;
+    width: 25%;
+    padding: 20px 0;
+    cursor: pointer;
+  }
 }

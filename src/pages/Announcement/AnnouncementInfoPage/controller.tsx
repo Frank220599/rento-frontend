@@ -2,14 +2,13 @@ import React, {useEffect} from 'react';
 import AnnouncementInfoPageView from './view';
 import {useRouteMatch} from "react-router-dom";
 
-const AnnouncementInfoPageController = ({GetAnnouncement, announcement}) => {
+const AnnouncementInfoPageController = ({GetAnnouncement, GetComments, AddComment, announcement}) => {
 
-    const {params: {slug}} = useRouteMatch();
+    const {params: {id}} = useRouteMatch();
 
     useEffect(() => {
-        GetAnnouncement({
-            slug
-        })
+        GetAnnouncement({id});
+        GetComments({params: {filter: {announcement_id: id}}})
     }, []);
 
     return (

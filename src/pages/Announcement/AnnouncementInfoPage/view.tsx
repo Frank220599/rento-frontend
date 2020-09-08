@@ -119,7 +119,7 @@ const AnnouncementInfoPageView = ({announcement}) => {
                     <div className="parameters">
                         {
                             announcement.property_values && announcement.property_values.map((property, index) => (
-                                <ParameterItem
+                               property.name !== 'color' && <ParameterItem
                                     key={property.id}
                                     name={property.name}
                                     value={property.value}
@@ -152,7 +152,7 @@ const AnnouncementInfoPageView = ({announcement}) => {
                 <p className={"borderLabel"}>Вам может понравиться</p>
                 <div className={"a-center"}>
                     <AnnouncementItem
-                        slug={''}
+                        id={1}
                         image={require('assets/images/img.png')}
                         title={'53 кв/м оффис сдаётся в аренду в'}
                         price={'500 у.е/месяц'}

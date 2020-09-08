@@ -32,8 +32,7 @@ function* GetAnnouncements(action) {
 
 function* GetAnnouncement(action) {
     try {
-        const {data} = yield call(api.request.get, `/announcement/${action.payload.slug}`);
-
+        const {data} = yield call(api.request.get, `/announcement/${action.payload.id}`);
 
         yield put({
             type: Announcements.GetAnnouncement.SUCCESS,
@@ -54,10 +53,58 @@ function* GetAnnouncement(action) {
     }
 }
 
+function* GetComments(action) {
+    try {
+        const {data} = yield call(api.request.get, api.queryBuilder('/comments', action.payload.params));
+
+        yield put({
+            type: Announcements.GetComments.SUCCESS,
+            payload: data.data,
+        });
+
+        yield call(action.cb, data);
+
+    } catch (error) {
+
+        yield put({
+            type: Announcements.GetComments.FAILURE,
+            payload: error
+        });
+
+        yield call(action.errorCb, error);
+
+    }
+}
+
+function* AddComment(action) {
+    try {
+        const {data} = yield call(api.request.post, api.queryBuilder('/comment', action.payload.params));
+
+        yield put({
+            type: Announcements.AddComment.SUCCESS,
+            payload: data.data,
+        });
+
+        yield call(action.cb, data);
+
+    } catch (error) {
+
+        yield put({
+            type: Announcements.AddComment.FAILURE,
+            payload: error
+        });
+
+        yield call(action.errorCb, error);
+
+    }
+}
+
 
 export default function* root() {
     yield all([
         takeLatest(Announcements.GetAnnouncements.REQUEST, GetAnnouncements),
         takeLatest(Announcements.GetAnnouncement.REQUEST, GetAnnouncement),
+        takeLatest(Announcements.GetComments.REQUEST, GetComments),
+        takeLatest(Announcements.AddComment.REQUEST, AddComment),
     ]);
 }

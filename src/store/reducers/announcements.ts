@@ -1,11 +1,12 @@
-import {GetAnnouncements, GetAnnouncement} from "../constants/announcements";
+import {GetAnnouncements, GetAnnouncement, GetComments} from "../constants/announcements";
 
 const initialState = {
     all: {
         data: []
     },
     one: {
-        data: {}
+        data: {},
+        comments: []
     }
 };
 
@@ -29,7 +30,24 @@ export default (state = initialState, action: any) => {
             return {
                 ...state,
                 one: {
+                    ...state.one,
                     data: action.payload[0]
+                }
+            };
+        case  GetComments.REQUEST:
+            return {
+                ...state,
+                one: {
+                    ...state.one,
+                    comments: []
+                }
+            };
+        case  GetComments.SUCCESS:
+            return {
+                ...state,
+                one: {
+                    ...state.one,
+                    comments: [...action.payload]
                 }
             };
         default:

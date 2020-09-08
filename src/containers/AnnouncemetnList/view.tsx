@@ -44,11 +44,11 @@ const AnnouncementListView = ({announcements, back}) => {
                         announcements.data.map((announcement) => (
                             <AnnouncementItem
                                 key={announcement.id}
+                                id={announcement.id}
                                 image={announcement.images[0]}
                                 title={announcement.title}
                                 price={`${announcement.price} у.е/месяц`}
                                 date={announcement.created_at}
-                                slug={announcement.slug}
                             />
                         ))
                     }

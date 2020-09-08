@@ -7,20 +7,18 @@ import SignInFormView from "./view";
 import {FormValues} from "./types";
 
 import {Login} from "../../store/actions/auth";
-import IAction from "../../store/types/IAction";
-
-interface IProps {
-    Login: IAction
-}
+import {withRouter} from "react-router-dom";
 
 
-const SignInFormController = withFormik<IProps, FormValues>({
+const SignInFormController = withFormik<any, FormValues>({
     mapPropsToValues: props => ({
         username: '',
         password: '',
     }),
-    handleSubmit: (values: FormValues, {props}: FormikBag<IProps, FormValues>) => {
-        props.Login(values)
+    handleSubmit: (values: FormValues, {props}: FormikBag<any, FormValues>) => {
+        props.Login(values, () => {
+            props.history.push('/')
+        })
     },
 })(SignInFormView);
 
@@ -29,5 +27,5 @@ export default connect(
     dispatch => bindActionCreators({
         Login
     }, dispatch)
-)(SignInFormController);
+)(withRouter(SignInFormController));
 

@@ -1,7 +1,9 @@
 import React, {useEffect} from 'react';
+import {useRouteMatch, useHistory} from "react-router-dom";
+import qs from "qs";
+
 import AnnouncementListView from './view';
 import IAction from "../../store/types/IAction";
-import {useRouteMatch} from "react-router-dom";
 
 interface IProps {
     GetAnnouncements: IAction;
@@ -15,20 +17,28 @@ const AnnouncementListController = (
         GetAnnouncements,
         announcements,
         back,
-        params
     }: IProps) => {
 
+    const history = useHistory();
     const {params: {categoryId}} = useRouteMatch();
 
+
     useEffect(() => {
+        let filter = {};
+        if (categoryId !== 'undefined') {
+            filter = {
+                category_id: categoryId,
+            }
+        }
         GetAnnouncements({
             params: {
                 filter: {
-                    category_id: categoryId
+                    ...filter,
+                    title: qs.parse(history.location.search, {ignoreQueryPrefix: true}).title
                 }
             }
         })
-    }, []);
+    }, [history.location.search]);
 
     return (
         <AnnouncementListView

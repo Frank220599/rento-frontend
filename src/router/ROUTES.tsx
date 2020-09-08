@@ -6,7 +6,7 @@ enum ROUTES {
     PROFILE_PAYMENT = '/user/profile/payment',
     PROFILE_SETTINGS = '/user/profile/settings',
     CHAT = '/user/chat',
-    ANNOUNCEMENT_SINGLE = '/announcement/:slug',
+    ANNOUNCEMENT_SINGLE = '/announcement/:id',
     CATEGORY_ANNOUNCEMENTS = '/announcements/:categoryId',
     ANNOUNCEMENT_ADD = '/announcement/add',
 };
