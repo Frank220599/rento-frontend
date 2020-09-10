@@ -5,7 +5,7 @@ import * as User from "../constants/user";
 
 function* GetProfile(action: any) {
     try {
-        const {data} = yield call(api.request.get, '/profile/show', action.payload);
+        const {data} = yield call(api.request.post, '/user/get', action.payload);
 
         yield put({
             type: User.GetProfile.SUCCESS,

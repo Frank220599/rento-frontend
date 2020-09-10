@@ -24,18 +24,18 @@ const Header = () => {
         <div className={"header"}>
             <div className={"headerTop"}>
                 <div className={'container d-flex'}>
-                    <div className={'d-flex'}>
-                        <p>Местоположение:</p>
-                        <div className={"location"}>
-                            <LocationIcon className={"icon"}/>
-                            <p>Ташкент</p>
-                        </div>
-                    </div>
+                    {/*<div className={'d-flex'}>*/}
+                    {/*    <p>Местоположение:</p>*/}
+                    {/*    <div className={"location"}>*/}
+                    {/*        <LocationIcon className={"icon"}/>*/}
+                    {/*        <p>Ташкент</p>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                     <div className={"headerTopLeft"}>
-                        <div className={"leftItem"}>
-                            <FavoriteIcon/>
-                            <p>Избранный</p>
-                        </div>
+                        {/*<div className={"leftItem"}>*/}
+                        {/*    <FavoriteIcon/>*/}
+                        {/*    <p>Избранный</p>*/}
+                        {/*</div>*/}
                         <div className={"leftItem"}>
                             <LanguageIcon/>
                             <p>Язык <span>Русский</span></p>
@@ -45,7 +45,7 @@ const Header = () => {
                                 ? (
                                     <div className={"headerProfile"} onClick={toggleDropDown}>
                                         <img src={user.data.avatar_url} alt=""/>
-                                        <p>{user.data.name} {user.data.surname}</p>
+                                        <p style={{marginRight: 10, marginLeft: 10}}>Мой профиль</p>
                                         <ChevronDownIcon/>
                                         {visible && <div className={"dropdownMenu"}>
                                             <div className={"balanceInfo"}>
@@ -89,21 +89,24 @@ const Header = () => {
                         <Logo/>
                     </Link>
                     {
-                        categoryId
-                            ? <div className={"d-flex a-center categoryInfo"}>
-                                <div className={"imgContainer"}>
-                                    <img src={category && category.image_url} alt=""/>
-                                </div>
-                                <p>{category && category.title}</p>
+                        categoryId &&
+                        <div className={"d-flex a-center categoryInfo"}>
+                            <div className={"imgContainer"}>
+                                <img src={category && category.image_url} alt=""/>
                             </div>
-                            : <div className={"filter"}>
-                                <p className={"active"}>Аренда</p>
-                                <p>С выкупом</p>
-                                <p>Продаётся</p>
-                                <p>Отдам даром</p>
-                            </div>
+                            <p>{category && category.title}</p>
+                        </div>
                     }
-                    <NavLink to={user.isAuthenticated ? ROUTES.ANNOUNCEMENT_ADD : ROUTES.AUTH_SIGN_IN} className={"button"}>
+                    {/* <div className={"filter"}>*/}
+                    {/*     <p className={"active"}>Аренда</p>*/}
+                    {/*     <p>С выкупом</p>*/}
+                    {/*     <p>Продаётся</p>*/}
+                    {/*     <p>Отдам даром</p>*/}
+                    {/* </div>*/}
+                    <NavLink
+                        to={user.isAuthenticated ? ROUTES.ANNOUNCEMENT_ADD : ROUTES.AUTH_SIGN_IN}
+                        className={"button"}
+                    >
                         <p>+ Подать объявления</p>
                     </NavLink>
                 </div>

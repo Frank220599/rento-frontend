@@ -20,24 +20,25 @@ const Filter = () => {
     const category = useSelector(state => state.categories.all.data.find(category => category.id == categoryId));
     const categories = useSelector(state => state.categories.all.data);
 
+
     const submit = () => {
+        alert(categoryId);
+
         const search = {
             title,
             category_id: categoryItem.id,
         };
 
         history.push({
-            pathname: `/announcements/${categoryItem.id}`,
+            pathname: `/announcements/${categoryId}`,
             search: qs.stringify({
                 ...qs.parse(history.location.search, {ignoreQueryPrefix: true}),
                 ...search
             })
         })
-
     };
 
     const setCategory = (categoryItem) => {
-        console.log(categoryItem);
         setCategoryItem(categoryItem);
         setOptions({})
     };

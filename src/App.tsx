@@ -4,23 +4,30 @@ import {bindActionCreators} from "redux";
 
 import AppRouter from "router/AppRouter";
 import {GetCategories} from "store/actions/categories";
+import {GetProfile} from "./store/actions/user";
 
-function App({GetCategories}) {
+function App({GetCategories, GetProfile, user}) {
     useEffect(() => {
-        GetCategories()
+        GetCategories();
+        if (!user.id) {
+            GetProfile()
+        }
     }, []);
+
     return (
         <AppRouter/>
     );
 }
 
 
-const mapStateToProps = ({categories}) => ({
-    categories: categories.all
+const mapStateToProps = ({categories, user}) => ({
+    categories: categories.all,
+    user: user.data
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    GetCategories
+    GetCategories,
+    GetProfile
 }, dispatch);
 
 export default connect(

@@ -76,6 +76,7 @@ function* GetComments(action) {
     }
 }
 
+
 function* AddComment(action) {
     try {
         const {data} = yield call(api.request.post, api.queryBuilder('/comment', action.payload.params));
@@ -99,6 +100,29 @@ function* AddComment(action) {
     }
 }
 
+function* SetFavorite(action) {
+    try {
+        const {data} = yield call(api.request.post, `/user/favourite?favourite=${action.payload.id}`,);
+
+        yield put({
+            type: Announcements.SetFavorite.SUCCESS,
+            payload: data.data,
+        });
+
+        yield call(action.cb, data);
+
+    } catch (error) {
+
+        yield put({
+            type: Announcements.SetFavorite.FAILURE,
+            payload: error
+        });
+
+        yield call(action.errorCb, error);
+
+    }
+}
+
 
 export default function* root() {
     yield all([
@@ -106,5 +130,6 @@ export default function* root() {
         takeLatest(Announcements.GetAnnouncement.REQUEST, GetAnnouncement),
         takeLatest(Announcements.GetComments.REQUEST, GetComments),
         takeLatest(Announcements.AddComment.REQUEST, AddComment),
+        takeLatest(Announcements.SetFavorite.REQUEST, SetFavorite),
     ]);
 }

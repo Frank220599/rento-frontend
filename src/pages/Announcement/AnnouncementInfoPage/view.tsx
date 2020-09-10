@@ -16,7 +16,7 @@ import moment from "moment";
 const Carousel = require('react-responsive-carousel').Carousel;
 
 
-const AnnouncementInfoPageView = ({announcement}) => {
+const AnnouncementInfoPageView = ({announcement, comments, setFavorite}) => {
     const history = useHistory();
 
     return (
@@ -60,7 +60,7 @@ const AnnouncementInfoPageView = ({announcement}) => {
                             <div className="descTop">
                                 <p>Описание</p>
                                 <div className={"itemFunc"}>
-                                    <Favorite2Icon/>
+                                    <Favorite2Icon onClick={setFavorite}/>
                                     <div>
                                         <ShareIcon/>
                                         Поделится
@@ -77,13 +77,15 @@ const AnnouncementInfoPageView = ({announcement}) => {
                         </div>
                         <div className="author">
                             <p className={"borderLabel"}>Автор</p>
-                            <div className={"profileHeaderLeft"}>
-                                <img src={require('assets/images/placeholderUser.png')} alt=""/>
-                                <div className={"profileInfo"}>
-                                    <p>Анастасия Цой</p>
-                                    <Link to={ROUTES.PROFILE_PAYMENT}>Все обновлении автора</Link>
+                            {
+                                announcement.user && <div className={"profileHeaderLeft"}>
+                                    <img src={require('assets/images/placeholderUser.png')} alt=""/>
+                                    <div className={"profileInfo"}>
+                                        <p>{announcement.user.username}</p>
+                                        <Link to={`/user/profile/${announcement.user.id}`}>Все обновлении автора</Link>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                         <div className="infoButtons">
                             <Link to={'/'}>Написать</Link>
@@ -119,7 +121,7 @@ const AnnouncementInfoPageView = ({announcement}) => {
                     <div className="parameters">
                         {
                             announcement.property_values && announcement.property_values.map((property, index) => (
-                               property.name !== 'color' && <ParameterItem
+                                property.name !== 'color' && <ParameterItem
                                     key={property.id}
                                     name={property.name}
                                     value={property.value}
@@ -133,11 +135,16 @@ const AnnouncementInfoPageView = ({announcement}) => {
                         <p className={"borderLabel"}>Коментарии</p>
                         <SendMessage/>
                         <div className="commentsList">
-                            <CommentItem/>
-                            <CommentItem/>
-                            <CommentItem/>
-                            <CommentItem/>
-                            <CommentItem/>
+                            {
+                                comments.map(comment => (
+                                    <CommentItem
+                                        key={comment.id}
+                                        time={comment.created_at}
+                                        text={comment.text}
+                                        user={comment.user}
+                                    />
+                                ))
+                            }
                         </div>
                     </div>
                     <div className="announcementLocation">

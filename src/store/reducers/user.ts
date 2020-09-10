@@ -4,7 +4,7 @@ import {GetCar, GetProfile, UpdateProfile} from "../constants/user";
 const initialState = {
     token: null,
     isAuthenticated: false,
-    data: [],
+    data: {},
 };
 
 export default (state = initialState, action: any) => {
