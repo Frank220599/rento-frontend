@@ -39,7 +39,7 @@ const UserAnnouncementList = () => {
                                 id={1}
                                 image={require('assets/images/img.png')}
                                 title={'53 кв/м оффис сдаётся в аренду в'}
-                                price={'500 у.е/месяц'}
+                                price={'500 у.е'}
                                 date={'20/12/2020'}
                             />
                         ))

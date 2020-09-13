@@ -79,11 +79,11 @@ function* GetComments(action) {
 
 function* AddComment(action) {
     try {
-        const {data} = yield call(api.request.post, api.queryBuilder('/comment', action.payload.params));
+        const {data} = yield call(api.request.post, `/comment?text=${action.payload.comment}&announcement_id=${action.payload.id}`);
 
         yield put({
             type: Announcements.AddComment.SUCCESS,
-            payload: data.data,
+            payload: action.payload,
         });
 
         yield call(action.cb, data);
@@ -92,6 +92,29 @@ function* AddComment(action) {
 
         yield put({
             type: Announcements.AddComment.FAILURE,
+            payload: error
+        });
+
+        yield call(action.errorCb, error);
+
+    }
+}
+
+function* AddAnnouncement(action) {
+    try {
+        const {data} = yield call(api.request.post, `/announcement`, action.payload);
+
+        yield put({
+            type: Announcements.AddAnnouncement.SUCCESS,
+            payload: action.payload,
+        });
+
+        yield call(action.cb, data);
+
+    } catch (error) {
+
+        yield put({
+            type: Announcements.AddAnnouncement.FAILURE,
             payload: error
         });
 
@@ -131,5 +154,6 @@ export default function* root() {
         takeLatest(Announcements.GetComments.REQUEST, GetComments),
         takeLatest(Announcements.AddComment.REQUEST, AddComment),
         takeLatest(Announcements.SetFavorite.REQUEST, SetFavorite),
+        takeLatest(Announcements.AddAnnouncement.REQUEST, AddAnnouncement),
     ]);
 }

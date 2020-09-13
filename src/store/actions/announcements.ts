@@ -5,6 +5,7 @@ const GetAnnouncements = createAction(Announcements.GetAnnouncements.REQUEST);
 const GetAnnouncement = createAction(Announcements.GetAnnouncement.REQUEST);
 const GetComments = createAction(Announcements.GetComments.REQUEST);
 const AddComment = createAction(Announcements.AddComment.REQUEST);
+const AddAnnouncement = createAction(Announcements.AddAnnouncement.REQUEST);
 const SetFavorite = createAction(Announcements.SetFavorite.REQUEST);
 
 export {
@@ -12,5 +13,6 @@ export {
     GetAnnouncement,
     GetComments,
     AddComment,
+    AddAnnouncement,
     SetFavorite,
 }

@@ -42,7 +42,9 @@ const ChatPage = () => {
                             />
                         </div>
                         <div className={"sendMsg"}>
-                            <SendMessage/>
+                            <SendMessage value={''} addComment={() => {
+                            }} setValue={() => {
+                            }}/>
                         </div>
                     </div>
                 </div>

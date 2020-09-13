@@ -45,23 +45,21 @@ function* UpdateProfile(action: any) {
     }
 }
 
-function* GetCar(action: any) {
+function* GetUser(action: any) {
     try {
-        const {data} = yield call(api.request.get, '/profile/car', action.payload);
+        const {data} = yield call(api.request.get, `/user/${action.payload.id}`, action.payload);
 
         yield put({
-            type: User.GetCar.SUCCESS,
+            type: User.GetUser.SUCCESS,
             payload: data.data,
         });
 
         yield call(action.cb, data);
-
     } catch (error) {
         yield put({
-            type: User.GetCar.FAILURE,
+            type: User.GetUser.FAILURE,
             payload: error
         });
-
         yield call(action.errorCb, error);
     }
 }
@@ -70,6 +68,6 @@ export default function* root() {
     yield all([
         takeLatest(User.GetProfile.REQUEST, GetProfile),
         takeLatest(User.UpdateProfile.REQUEST, UpdateProfile),
-        takeLatest(User.GetCar.REQUEST, GetCar),
+        takeLatest(User.GetUser.REQUEST, GetUser),
     ]);
 }

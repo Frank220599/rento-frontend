@@ -6,7 +6,7 @@ const CommentItem = ({time, text, user}) => {
             <div className="commentUser">
                 <img src={require('assets/images/placeholderUser.png')} alt=""/>
                 <div>
-                    <p>{user && user.name}</p>
+                    <p>{user && user.username}</p>
                     <span>{time}</span>
                 </div>
             </div>

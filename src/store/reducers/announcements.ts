@@ -1,4 +1,4 @@
-import {GetAnnouncements, GetAnnouncement, GetComments} from "../constants/announcements";
+import {GetAnnouncements, GetAnnouncement, GetComments, AddComment} from "../constants/announcements";
 
 const initialState = {
     all: {
@@ -26,6 +26,14 @@ export default (state = initialState, action: any) => {
                     data: action.payload
                 }
             };
+        case  GetAnnouncement.REQUEST:
+            return {
+                ...state,
+                one: {
+                    ...state.one,
+                    data: {}
+                }
+            };
         case  GetAnnouncement.SUCCESS:
             return {
                 ...state,
@@ -47,7 +55,23 @@ export default (state = initialState, action: any) => {
                 ...state,
                 one: {
                     ...state.one,
-                    comments: [...action.payload]
+                    comments: [...action.payload.reverse()]
+                }
+            };
+        case  AddComment.SUCCESS:
+            return {
+                ...state,
+                one: {
+                    ...state.one,
+                    comments: [
+                        {
+                            id: Math.random(),
+                            text: action.payload.comment,
+                            created_at: Date.now(),
+                            user: action.payload.user
+                        },
+                        ...state.one.comments
+                    ]
                 }
             };
         default:

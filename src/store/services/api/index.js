@@ -12,10 +12,16 @@ request.defaults.headers.common['Accept'] = 'application/json';
 request.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
 
 
-const token = localStorage.getItem('rentoToken');
-if (token) {
-    request.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-}
+const setToken = store => {
+    const token = localStorage.getItem('rentoToken');
+
+    function handleChange() {
+        request.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
+
+    store.subscribe(handleChange);
+
+};
 
 const queryBuilder = (url, {fields = [], include = [], limit = 0, sort = '', filter = {}, page = 1, extra = {}} = {}) => {
 
@@ -68,4 +74,5 @@ const queryBuilder = (url, {fields = [], include = [], limit = 0, sort = '', fil
 export default {
     request,
     queryBuilder,
+    setToken,
 };

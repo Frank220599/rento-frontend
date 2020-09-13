@@ -47,7 +47,7 @@ const AnnouncementListView = ({announcements, back}) => {
                                 id={announcement.id}
                                 image={announcement.images[0]}
                                 title={announcement.title}
-                                price={`${announcement.price} у.е/месяц`}
+                                price={`${announcement.price} у.е`}
                                 date={announcement.created_at}
                             />
                         ))

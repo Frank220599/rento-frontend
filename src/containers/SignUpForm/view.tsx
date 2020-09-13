@@ -6,8 +6,9 @@ import ROUTES from "router/ROUTES";
 import GoogleIcon from "assets/icons/GoogleIcon";
 import FacebookOriginalIcon from "assets/icons/FacebookOrginalIcon";
 import Circles from "assets/icons/Circles";
+import Spinner from "../../components/Spinner";
 
-const SignUpFormView = ({}: FormikProps<FormValues>) => {
+const SignUpFormView = ({isLoading}: any) => {
     return (
         <div className={"signup"}>
             <Circles/>
@@ -29,7 +30,7 @@ const SignUpFormView = ({}: FormikProps<FormValues>) => {
                 <Field name={Fields.USERNAME} placeholder={PLACEHOLDERS.USERNAME}/>
                 <Field name={Fields.PASSWORD} placeholder={PLACEHOLDERS.PASSWORD}/>
                 <p>Регистрируясь вы принимаете <Link to={''}>Условия<br/>использования</Link> сайта</p>
-                <button type={"submit"}>Утверждать</button>
+                <button type={"submit"} disabled={isLoading}>{isLoading ? <Spinner/> : 'Утверждать'}</button>
             </Form>
             <div className={"haveAnnAccount"}>
                 <p>Уже есть аккаунт?</p>

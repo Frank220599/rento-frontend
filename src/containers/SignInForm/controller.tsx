@@ -23,7 +23,9 @@ const SignInFormController = withFormik<any, FormValues>({
 })(SignInFormView);
 
 export default connect(
-    null,
+    ({user}) => ({
+        isLoading: user.isLoading
+    }),
     dispatch => bindActionCreators({
         Login
     }, dispatch)

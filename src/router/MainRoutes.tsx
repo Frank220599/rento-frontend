@@ -3,13 +3,14 @@ import MainPage from "pages/MainPage";
 import ROUTES from "./ROUTES";
 import SignUpPage from "pages/Authorization/SignUpPage";
 import SignInPage from "../pages/Authorization/SignInPage";
-import ProfilePage from "../pages/Profile/ProfilePage/view";
+import ProfilePage from "../pages/Profile/ProfilePage";
 import ProfilePaymentPage from "../pages/Profile/ProfilePaymentPage";
 import ProfileSettingsPage from "../pages/Profile/ProfileSettingsPage/view";
 import ChatPage from "../pages/Profile/ChatPage";
 import AnnouncementInfoPage from "../pages/Announcement/AnnouncementInfoPage";
 import AddAnnouncementPage from "../pages/Announcement/AddAnnouncementPage";
 import CategoryAnnouncementsPage from "../pages/Announcement/CategoryAnnouncementsPage";
+import UserAnnouncements from "../pages/UserAnnouncements";
 
 const MainRotes: IRoute[] = [
     {
@@ -33,6 +34,11 @@ const MainRotes: IRoute[] = [
         path: ROUTES.PROFILE,
         exact: true,
         component: ProfilePage,
+    },
+    {
+        path: ROUTES.USER_ANNOUNCEMENTS,
+        exact: true,
+        component: UserAnnouncements,
     },
     {
         path: ROUTES.PROFILE_PAYMENT,

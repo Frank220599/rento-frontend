@@ -1,3 +1,3 @@
-import ProfileHeader from "components/ProfileHeader";
+import ProfilePage from "./view";
 
-export default ProfileHeader;
+export default ProfilePage;

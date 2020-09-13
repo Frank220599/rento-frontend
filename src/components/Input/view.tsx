@@ -11,6 +11,7 @@ interface IProps {
     onChange?: any;
     onBlur?: any;
     onClick?: () => void;
+    type?: string
 }
 
 const Input = (
@@ -24,6 +25,7 @@ const Input = (
         onBlur,
         onChange,
         onClick,
+        type = 'text'
     }: IProps) => {
     return (
         <div className={"customInputWrapper"}>
@@ -36,7 +38,7 @@ const Input = (
                     disabled={disabled}
                     onBlur={onBlur}
                     onChange={onChange}
-
+                    type={type}
                 />
                 {icon && <ChevronDown2Icon/>}
             </div>

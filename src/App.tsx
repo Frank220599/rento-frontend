@@ -5,9 +5,12 @@ import {bindActionCreators} from "redux";
 import AppRouter from "router/AppRouter";
 import {GetCategories} from "store/actions/categories";
 import {GetProfile} from "./store/actions/user";
+import api from 'store/services/api';
+import {store} from "./index";
 
 function App({GetCategories, GetProfile, user}) {
     useEffect(() => {
+        api.setToken(store);
         GetCategories();
         if (!user.id) {
             GetProfile()

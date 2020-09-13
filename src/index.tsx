@@ -8,8 +8,9 @@ import * as serviceWorker from './serviceWorker';
 import createStore from "./store/createStore";
 import "normalize.css"
 import "assets/styles/styles.scss"
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
-const store = createStore();
+export const store = createStore();
 
 
 ReactDOM.render(

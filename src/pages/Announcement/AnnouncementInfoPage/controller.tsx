@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import AnnouncementInfoPageView from './view';
 import {useRouteMatch} from "react-router-dom";
 
-const AnnouncementInfoPageController = ({GetAnnouncement, GetComments, AddComment, announcement, SetFavorite}) => {
+const AnnouncementInfoPageController = ({GetAnnouncement, GetComments, AddComment, announcement, SetFavorite, user}) => {
 
     const {params: {id}} = useRouteMatch();
+    const [comment, setComment] = useState();
 
     useEffect(() => {
         GetAnnouncement({id});
@@ -15,11 +16,22 @@ const AnnouncementInfoPageController = ({GetAnnouncement, GetComments, AddCommen
         SetFavorite({id})
     };
 
+    const addComment = () => {
+        if (comment) {
+            AddComment({comment, id, user}, () => {
+                setComment('')
+            })
+        }
+    };
+
     return (
         <AnnouncementInfoPageView
+            comment={comment}
+            setComment={setComment}
             announcement={announcement.data}
             comments={announcement.comments}
             setFavorite={setFavorite}
+            addComment={addComment}
         />
     );
 };

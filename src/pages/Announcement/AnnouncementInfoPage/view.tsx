@@ -4,7 +4,6 @@ import {Link, useHistory} from "react-router-dom"
 import BackArrowIcon from "assets/icons/BackArrowIcon";
 import ShareIcon from "assets/icons/ShareIcon";
 import Favorite2Icon from "assets/icons/Favorite2Icon";
-import ROUTES from "router/ROUTES";
 import AnnouncementItem from "components/AnnouncementItem";
 import SendMessage from "components/SendMessage";
 import ParameterItem from "components/ParameterItem";
@@ -16,7 +15,7 @@ import moment from "moment";
 const Carousel = require('react-responsive-carousel').Carousel;
 
 
-const AnnouncementInfoPageView = ({announcement, comments, setFavorite}) => {
+const AnnouncementInfoPageView = ({announcement, comments, setFavorite, addComment, setComment, comment}) => {
     const history = useHistory();
 
     return (
@@ -73,7 +72,7 @@ const AnnouncementInfoPageView = ({announcement, comments, setFavorite}) => {
                         </div>
                         <div className="priceWrapper">
                             <p>Цена</p>
-                            <span>{announcement.price} y.e/месяц</span>
+                            <span>{announcement.price} y.e</span>
                         </div>
                         <div className="author">
                             <p className={"borderLabel"}>Автор</p>
@@ -82,7 +81,7 @@ const AnnouncementInfoPageView = ({announcement, comments, setFavorite}) => {
                                     <img src={require('assets/images/placeholderUser.png')} alt=""/>
                                     <div className={"profileInfo"}>
                                         <p>{announcement.user.username}</p>
-                                        <Link to={`/user/profile/${announcement.user.id}`}>Все обновлении автора</Link>
+                                        <Link to={`/user/announcements/${announcement.user.id}`}>Все обновлении автора</Link>
                                     </div>
                                 </div>
                             }
@@ -133,7 +132,11 @@ const AnnouncementInfoPageView = ({announcement, comments, setFavorite}) => {
                 <div className="announcementInfoBottom">
                     <div className="announcementComments">
                         <p className={"borderLabel"}>Коментарии</p>
-                        <SendMessage/>
+                        <SendMessage
+                            addComment={addComment}
+                            value={comment}
+                            setValue={setComment}
+                        />
                         <div className="commentsList">
                             {
                                 comments.map(comment => (
@@ -162,7 +165,7 @@ const AnnouncementInfoPageView = ({announcement, comments, setFavorite}) => {
                         id={1}
                         image={require('assets/images/img.png')}
                         title={'53 кв/м оффис сдаётся в аренду в'}
-                        price={'500 у.е/месяц'}
+                        price={'500 у.е'}
                         date={'20/06/2020'}
                     />
                 </div>
