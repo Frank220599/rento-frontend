@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useRouteMatch, useHistory} from "react-router-dom";
 import qs from "qs";
 
@@ -22,7 +22,6 @@ const AnnouncementListController = (
     const history = useHistory();
     const {params: {categoryId}} = useRouteMatch();
 
-
     useEffect(() => {
         let filter = {};
         if (categoryId !== 'undefined') {
@@ -34,7 +33,9 @@ const AnnouncementListController = (
             params: {
                 filter: {
                     ...filter,
-                    title: qs.parse(history.location.search, {ignoreQueryPrefix: true}).title
+                    title: qs.parse(history.location.search, {ignoreQueryPrefix: true}).title,
+                    sortfield: 'id',
+                    sortorder: 'desc'
                 }
             }
         })

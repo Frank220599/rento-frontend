@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Link, NavLink, useRouteMatch} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {Link, NavLink, useRouteMatch, useHistory} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
 
 import Logo from "assets/images/Logo";
 import LocationIcon from "assets/icons/LocationIcon"
@@ -11,7 +11,16 @@ import ROUTES from "router/ROUTES";
 import ChevronDownIcon from "../../assets/icons/ChevronDownIcon";
 
 const Header = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
 
+    const logout = () => {
+        dispatch({
+            type: 'LOGOUT'
+        });
+        localStorage.removeItem('rentoToken');
+        history.push('/')
+    }
     const [visible, setVisible] = useState(false);
 
     const {params: {categoryId}} = useRouteMatch();
@@ -67,6 +76,7 @@ const Header = () => {
                                                 <NavLink to={ROUTES.PROFILE}>Моя страница</NavLink>
                                                 <NavLink to={ROUTES.CHAT}>Сообщение</NavLink>
                                                 <NavLink to={ROUTES.PROFILE_SETTINGS}>Настройки</NavLink>
+                                                <a onClick={logout}>Выйти</a>
                                             </div>
                                         </div>}
                                     </div>

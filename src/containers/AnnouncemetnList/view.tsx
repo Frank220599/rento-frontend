@@ -6,6 +6,7 @@ import FilterIcon from "../../assets/icons/FilterIcon";
 import ListViewIcon from "../../assets/icons/ListViewIcon";
 import GridViewIcon from "../../assets/icons/GridViewIcon";
 import BackIcon from "../../assets/icons/BackIcon";
+import AnnouncementContentHolder from "../../components/AnnouncementContentHolder";
 
 const AnnouncementListView = ({announcements, back}) => {
     const history = useHistory();
@@ -51,6 +52,13 @@ const AnnouncementListView = ({announcements, back}) => {
                                 date={announcement.created_at}
                             />
                         ))
+                    }
+                    {
+                        !announcements.isFetched && [...new Array(12)].map(item => {
+                            return <div className={"announcementItem"} style={{overflow: 'hidden'}}>
+                                <AnnouncementContentHolder/>
+                            </div>
+                        })
                     }
                 </div>
                 <div className="showMore">

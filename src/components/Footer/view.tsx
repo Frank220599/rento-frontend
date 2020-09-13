@@ -1,68 +1,24 @@
 import React from 'react';
+import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 const Footer = () => {
+    const categories = useSelector(state => state.categories.all.data);
+
     return (
-        <div className={"footer"}>
+        categories.length && <div className={"footer"}>
             <div className={"bordered"}>
                 <div className={"container"}>
                     <div className="footerCategories">
                         <div className="footerCategory">
-                            <p className={"footerCategoryTitle"}>Транспорт</p>
+                            <p className={"footerCategoryTitle"}>{categories[0].title}</p>
                             <div className="footerCategoryLists">
                                 <div className="footerCategoryList">
-                                    <p>Легковой</p>
-                                    <p>Грузовой</p>
-                                    <p>Мото</p>
-                                    <p>Автобус</p>
-                                    <p>Миниавтобус</p>
-                                    <p>Микро автобус</p>
-                                    <p>Трактор</p>
-                                    <p>Прицепы</p>
-                                    <p>Средства Спец.техники</p>
-                                </div>
-                                <div className="footerCategoryList">
-                                    <p>Легковой</p>
-                                    <p>Грузовой</p>
-                                    <p>Мото</p>
-                                    <p>Автобус</p>
-                                    <p>Миниавтобус</p>
-                                    <p>Микро автобус</p>
-                                    <p>Трактор</p>
-                                    <p>Прицепы</p>
-                                    <p>Средства Спец.техники</p>
-                                </div>
-                                <div className="footerCategoryList">
-                                    <p>Легковой</p>
-                                    <p>Грузовой</p>
-                                    <p>Мото</p>
-                                    <p>Автобус</p>
-                                    <p>Миниавтобус</p>
-                                    <p>Микро автобус</p>
-                                    <p>Трактор</p>
-                                    <p>Прицепы</p>
-                                    <p>Средства Спец.техники</p>
-                                </div>
-                                <div className="footerCategoryList">
-                                    <p>Легковой</p>
-                                    <p>Грузовой</p>
-                                    <p>Мото</p>
-                                    <p>Автобус</p>
-                                    <p>Миниавтобус</p>
-                                    <p>Микро автобус</p>
-                                    <p>Трактор</p>
-                                    <p>Прицепы</p>
-                                    <p>Средства Спец.техники</p>
-                                </div>
-                                <div className="footerCategoryList">
-                                    <p>Легковой</p>
-                                    <p>Грузовой</p>
-                                    <p>Мото</p>
-                                    <p>Автобус</p>
-                                    <p>Миниавтобус</p>
-                                    <p>Микро автобус</p>
-                                    <p>Трактор</p>
-                                    <p>Прицепы</p>
-                                    <p>Средства Спец.техники</p>
+                                    {
+                                        categories[0].children && categories[0].children.map(item => (
+                                            <Link to={`/announcements/${item.id}`}>{item.title}</Link>
+                                        ))
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -72,28 +28,14 @@ const Footer = () => {
             <div className={"container"}>
                 <div className="footerCategories">
                     <div className="footerCategory">
-                        <p className={"footerCategoryTitle"}>Недвижимость</p>
+                        <p className={"footerCategoryTitle"}>{categories[1].title}</p>
                         <div className={"footerCategoryLists"}>
                             <div className="footerCategoryList">
-                                <p>Дачи</p>
-                                <p>Дом</p>
-                                <p>Земля</p>
-                                <p>Квартиры Новостройки</p>
-                                <p>Гаражи / стоянки</p>
-                            </div>
-                            <div className="footerCategoryList">
-                                <p>Кирпичный</p>
-                                <p>Панельный Монолитный</p>
-                                <p>Блочный</p>
-                                <p>Деревянный</p>
-                            </div>
-                            <div className="footerCategoryList">
-                                <p>Смежная</p>
-                                <p>Раздельная</p>
-                                <p>Смежно-раздельная</p>
-                                <p>Студия</p>
-                                <p>Пентхаус</p>
-                                <p>Многоуровневая Малосемейка</p>
+                                {
+                                    categories[1].children && categories[1].children.map(item => (
+                                        <Link to={`/announcements/${item.id}`}>{item.title}</Link>
+                                    ))
+                                }
                             </div>
                         </div>
                     </div>
@@ -107,20 +49,6 @@ const Footer = () => {
                                 <p>Гаджеты, планшеты и аксессуары</p>
                                 <p>Игры и игровые приставки</p>
                                 <p>Климатическое оборудование</p>
-                            </div>
-                            <div className="footerCategoryList">
-                                <p>Мобильные телефоны</p>
-                                <p>Прочая электроника</p>
-                                <p>Тв / видеотехника</p>
-                                <p>Техника для кухни </p>
-                                <p>Фото и видео</p>
-                            </div>
-                            <div className="footerCategoryList">
-                                <p>Мобильные телефоны</p>
-                                <p>Прочая электроника</p>
-                                <p>Тв / видеотехника</p>
-                                <p>Техника для кухни </p>
-                                <p>Фото и видео</p>
                             </div>
                         </div>
                     </div>

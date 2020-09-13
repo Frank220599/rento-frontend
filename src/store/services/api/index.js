@@ -13,10 +13,19 @@ request.defaults.headers.common['Content-Type'] = 'application/json; charset=utf
 
 
 const setToken = store => {
-    const token = localStorage.getItem('rentoToken');
+    function select(state) {
+        return state.user.token
+    }
+
+    let currentValue;
 
     function handleChange() {
-        request.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        let previousValue = currentValue;
+        currentValue = select(store.getState());
+
+        if (previousValue !== currentValue) {
+            request.defaults.headers.common['Authorization'] = `Bearer ${currentValue || localStorage.getItem('rentoToken')}`;
+        }
     }
 
     store.subscribe(handleChange);

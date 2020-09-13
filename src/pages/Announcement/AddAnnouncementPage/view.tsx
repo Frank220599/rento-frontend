@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {connect} from "react-redux";
-import {Form, Formik, FormikBag, withFormik, Field} from "formik"
+import {Form, Formik, Field} from "formik"
 import {Modal} from 'antd';
 import * as Yup from "yup";
 import {bindActionCreators} from "redux";
-import 'antd/dist/antd.css';
+import {withRouter} from 'react-router-dom';
 
 import Input from "components/Input";
 import MountainsIcon from "assets/icons/MountainsIcon";
@@ -13,7 +13,7 @@ import DocumentItem from "../../../components/DocumentItem";
 import {AddAnnouncement} from "../../../store/actions/announcements";
 import slugify from "slugify";
 
-let AddAnnouncementPage = ({errors, categories, user, AddAnnouncement}) => {
+let AddAnnouncementPage = ({errors, categories, user, AddAnnouncement, history}) => {
     const [visible, setVisible] = useState(false);
     const [subCategory, setSubCategory] = useState<any>({});
     const [subCategoryModal, setSubCategoryModal] = useState(false);
@@ -26,19 +26,34 @@ let AddAnnouncementPage = ({errors, categories, user, AddAnnouncement}) => {
         setVisible(true);
     };
 
+    const [imgUrls, setImgUrls] = useState<any>([]);
+    const [images, setImages] = useState<any>([]);
+
+    const handleImgUpdate = (files) => {
+        Object.keys(files).forEach(key => {
+            setImgUrls(prevState => [[URL.createObjectURL(new Blob([files[key]]))], ...prevState])
+            setImages(prevState => [files[key], ...prevState])
+        })
+    };
+
     let formData = (rawData) => {
         let form = new FormData();
         Object.keys(rawData).forEach((key) => {
             if (Array.isArray(rawData[key])) {
                 let obj = rawData[key];
                 for (let index in obj) {
-                    form.append(`${key}[${index}]`, obj[index]);
+                    if (key === "images") {
+                        form.append(`${key}[]`, obj[index]);
+                    } else {
+                        form.append(`${key}[${index}]`, obj[index]);
+
+                    }
                 }
                 return;
             }
             if (typeof rawData[key] === "object") {
                 let obj = rawData[key];
-                let i = 0;
+
                 Object.keys(obj).forEach((id, index) => {
                     if (obj[id]) form.append(`${key}[${id}]`, obj[id]);
                 });
@@ -52,53 +67,64 @@ let AddAnnouncementPage = ({errors, categories, user, AddAnnouncement}) => {
     return (
         <>
             <Modal
+                width={"90%"}
                 visible={visible}
                 cancelButtonProps={{style: {display: "none"}}}
                 okButtonProps={{style: {display: "none"}}}
                 onCancel={() => setVisible(false)}
             >
-                {
-                    categories.map(item => (
-                        <p onClick={() => {
-                            setSelectedCategory(item);
-                            setVisible(false);
-                            setSubCategory({})
-                        }}>{item.title}</p>
-                    ))
-                }
+                <div className={"filterOptions"}>
+                    {
+                        categories.map(item => (
+                            <p className={"optionItem"} onClick={() => {
+                                setSelectedCategory(item);
+                                setVisible(false);
+                                setSubCategory({})
+                            }}>{item.title}</p>
+                        ))
+                    }
+                </div>
             </Modal>
             <Modal
+                width={"90%"}
                 visible={subCategoryModal}
                 cancelButtonProps={{style: {display: "none"}}}
                 okButtonProps={{style: {display: "none"}}}
                 onCancel={() => setSubCategoryModal(false)}
             >
-                {
-                    selectedCategory.children && selectedCategory.children.map(item => (
-                        <p onClick={() => {
-                            setSubCategory(item);
-                            setSubCategoryModal(false)
-                        }}>{item.title}</p>
-                    ))
-                }
+                <div className={"filterOptions"}>
+
+                    {
+                        selectedCategory.children && selectedCategory.children.map(item => (
+                            <p className={"optionItem"} onClick={() => {
+                                setSubCategory(item);
+                                setSubCategoryModal(false)
+                            }}>{item.title}</p>
+                        ))
+                    }
+                </div>
             </Modal>
             <Modal
+                width={"90%"}
                 visible={optionsModal}
                 cancelButtonProps={{style: {display: "none"}}}
                 okButtonProps={{style: {display: "none"}}}
                 onCancel={() => setOptionsModal(false)}
             >
-                {
-                    modalContent.options && modalContent.options.map(item => (
-                        <p onClick={() => {
-                            setOptionsModal(false);
-                            setOptions(prevState => ({
-                                ...prevState,
-                                [modalContent.property_id]: item.value
-                            }))
-                        }}>{item.value}</p>
-                    ))
-                }
+                <div className={"filterOptions"}>
+
+                    {
+                        modalContent.options && modalContent.options.map(item => (
+                            <p className={"optionItem"} onClick={() => {
+                                setOptionsModal(false);
+                                setOptions(prevState => ({
+                                    ...prevState,
+                                    [modalContent.property_id]: item.value
+                                }))
+                            }}>{item.value}</p>
+                        ))
+                    }
+                </div>
             </Modal>
             <Formik
                 initialValues={{}}
@@ -108,14 +134,15 @@ let AddAnnouncementPage = ({errors, categories, user, AddAnnouncement}) => {
                     price: Yup.string().required(),
                 })}
                 onSubmit={(values: any) => {
-                    console.log(options);
-                    AddAnnouncement(formData({
-                        ...values,
-                        slug: slugify(values.title),
-                        category_id: subCategory.id ? subCategory.id : selectedCategory.id,
-                        user_id: user.id,
-                        properties: options || []
-                    }))
+                    AddAnnouncement(
+                        formData({
+                            ...values,
+                            images,
+                            slug: slugify(values.title),
+                            category_id: subCategory.id ? subCategory.id : selectedCategory.id,
+                            properties: options || []
+                        })
+                    )
                 }}
             >
                 {props => (
@@ -236,11 +263,28 @@ let AddAnnouncementPage = ({errors, categories, user, AddAnnouncement}) => {
                                         </div>
                                         <div>
                                             <MountainsIcon/>
-                                            <button>
+                                            <label>
+                                                <input
+                                                    id="cover"
+                                                    name="cover"
+                                                    type="file"
+                                                    hidden
+                                                    multiple
+                                                    maxLength={8}
+                                                    onChange={(event) => {
+                                                        handleImgUpdate(event.target.files);
+                                                    }}
+                                                    accept=".png, .jpg, .jpeg"
+                                                />
                                                 <UploadIcon/>
                                                 <p>Загрузить фото</p>
-                                            </button>
+                                            </label>
                                         </div>
+                                    </div>
+                                    <div className="itemList">
+                                        {imgUrls.map(imgUrl => (
+                                            <img className={"previewImg"} src={imgUrl} alt=""/>
+                                        ))}
                                     </div>
                                 </div>
                                 <div className="addPhoto">
@@ -251,10 +295,10 @@ let AddAnnouncementPage = ({errors, categories, user, AddAnnouncement}) => {
                                         </div>
                                         <div>
                                             <MountainsIcon/>
-                                            <button>
+                                            <label>
                                                 <UploadIcon/>
                                                 <p>Загрузить фото</p>
-                                            </button>
+                                            </label>
                                         </div>
                                     </div>
                                     <div className="itemList">
@@ -265,7 +309,7 @@ let AddAnnouncementPage = ({errors, categories, user, AddAnnouncement}) => {
                                     </div>
                                 </div>
                                 <div className="addAnnSave">
-                                    <button>Отмена</button>
+                                    <button onClick={() => history.push('/')}>Отмена</button>
                                     <button type={"submit"}>Сохранить</button>
                                 </div>
                                 <div className="tip">
@@ -295,4 +339,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     AddAnnouncement
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddAnnouncementPage);
+// @ts-ignore
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddAnnouncementPage));

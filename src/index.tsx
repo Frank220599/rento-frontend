@@ -6,6 +6,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import createStore from "./store/createStore";
+
+// import 'antd/dist/antd.css';
 import "normalize.css"
 import "assets/styles/styles.scss"
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"

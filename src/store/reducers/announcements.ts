@@ -2,7 +2,8 @@ import {GetAnnouncements, GetAnnouncement, GetComments, AddComment} from "../con
 
 const initialState = {
     all: {
-        data: []
+        data: [],
+        isFetched: false,
     },
     one: {
         data: {},
@@ -16,6 +17,7 @@ export default (state = initialState, action: any) => {
             return {
                 ...state,
                 all: {
+                    isFetched: false,
                     data: []
                 }
             };
@@ -23,6 +25,7 @@ export default (state = initialState, action: any) => {
             return {
                 ...state,
                 all: {
+                    isFetched: true,
                     data: action.payload
                 }
             };
